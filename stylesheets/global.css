@@ -46,7 +46,7 @@ body {
 }
 /* spacing */
 header,
-main,
+.container,
 footer {
   padding-inline: var(--padding-inline);
   padding-block: var(--padding-block);
@@ -56,10 +56,15 @@ footer {
   width: var(--logo-size);
 }
 
-.text-content {
+.container {
   display: grid;
   justify-items: center;
+}
+
+.text-content {
   text-align: center;
+  display: grid;
+  justify-items: center;
 }
 
 .text-content > h1,
@@ -71,17 +76,18 @@ footer {
   font-size: var(--fs-heading);
   font-weight: var(--fw-bold);
   margin: 2.5em 0 0.5em;
+  max-width: 20ch;
 }
 
 .text-content > p {
   font-family: var(--ff-body);
   font-weight: var(--fs-400);
   font-size: var(--fs-paragraph);
+  max-width: 50ch;
   margin-bottom: 1.5em;
 }
 
 .primary-btn {
-  display: block;
   background-color: transparent;
   color: var(--clr-primary-400);
   font-size: var(--fs-button);
@@ -127,6 +133,13 @@ footer {
   z-index: -1;
 }
 
+@media (min-width: 64em) {
+  .primary-btn::after {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
 .primary-btn:hover {
   color: var(--clr-primary-100);
   cursor: pointer;
@@ -154,7 +167,7 @@ footer {
 .social-links {
   display: flex;
   justify-content: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.625em;
 }
 
 .social-links > li > a  {
@@ -197,11 +210,42 @@ footer {
 }
 
 .attribution a {
-  color: var(--clr-accent-600);
+  color: var(--clr-accent-400);
+}
+
+/* TABLETS */
+@media (min-width: 40em) {
+  .container {
+    grid-template-columns: 4fr 3fr;
+    grid-column-gap: 2em;
+    align-items: center;
+  }
+  
+  .container img {
+    justify-self: end;
+  }
+  
+  .text-content {
+    justify-items: start;
+    text-align: left;
+    justify-self: start;
+  }
+  
+  .text-content > h1{
+    margin-top: unset;
+  }
+  
+  .social-links {
+    justify-content: end;
+  }
+  
+  .attribution {
+    text-align: right;
+  }
 }
 
 /* DESKTOPS */
-@media (min-width: 64em) {
+@media (min-width: 75em) {
   :root {
     --fs-paragraph: var(--fs-400);
     --fs-heading: var(--fs-900);
@@ -219,16 +263,9 @@ footer {
     background-size: auto;
   }
   
-  main {
-    display: grid;
-    grid-template-columns: 4fr 3fr;
+  .container {
     grid-column-gap: 4em;
     align-items: start;
-  }
-  
-  .text-content {
-    justify-items: left;
-    text-align: left;
   }
   
   .text-content > h1 {
@@ -236,5 +273,7 @@ footer {
     line-height: 1.4;
   }
   
-  
+  footer {
+    padding-block: unset;
+  }
 } 
