@@ -20,16 +20,15 @@
   
   --fs-200: 0.75rem;
   --fs-300: 0.96875rem;
-  --fs-400: 1rem;
+  --fs-400: 1.125rem;
   --fs-600: 1.5rem;
-  --fs-900: ;
+  --fs-900: 2.5rem;
   
   --fs-paragraph: var(--fs-300);
   --fs-heading: var(--fs-600);
   --fs-button: var(--fs-200);
   
   --body-bg-image: url('../images/bg-mobile.svg');
-  
   --logo-size: 8rem;
   
   --padding-inline: 2.5em;
@@ -37,19 +36,11 @@
   --padding-primary-btn: 0.875em 6.5em;
 }
 
-@media (min-width: 40em) {
-  :root {
-    --fs-heading: var(--fs-900);
-    --fs-button: ;
-    
-    --body-bg-image: url('../images/bg-desktop.svg');
-  }
-}
-
 body {
   background-color: var(--clr-primary-400);
   background-image: var(--body-bg-image);
   background-repeat: no-repeat;
+  background-size: 100% auto;
   font-family: var(--ff-body);
   color: var(--clr-primary-100);
 }
@@ -68,9 +59,6 @@ footer {
 .text-content {
   display: grid;
   justify-items: center;
-}
-.text-content > h1,
-.text-content > p {
   text-align: center;
 }
 
@@ -127,15 +115,16 @@ footer {
 .primary-btn::after {
   content: '';
   background-color: var(--clr-accent-400);
-  width: 20%;
-  height: 100%;
   border-radius: 100vmax;
-  transform: translate(-50%, 50%);
-  z-index: -1;
-  transition:
-    transform 200ms ease-in,
-    width 500ms ease 200ms;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: translate(-50%, 70%);
+  transition: 
+    transform 300ms ease 300ms,
+    width 300ms ease,
+    height 300ms ease;
   position: absolute;
+  z-index: -1;
 }
 
 .primary-btn:hover {
@@ -144,9 +133,13 @@ footer {
 }
 
 .primary-btn:hover::after {
-  transform: translate(-50%, -50%);
   width: 110%;
   height: 110%;
+  transform: translate(-50%, -50%);
+  transition: 
+    transform 300ms ease,
+    width 300ms ease 200ms,
+    height 300ms ease 200ms;
 }
 
 .primary-btn:focus {
@@ -206,3 +199,42 @@ footer {
 .attribution a {
   color: var(--clr-accent-600);
 }
+
+/* DESKTOPS */
+@media (min-width: 64em) {
+  :root {
+    --fs-paragraph: var(--fs-400);
+    --fs-heading: var(--fs-900);
+    --fs-button: var(--fs-400);
+    
+    --body-bg-image: url('../images/bg-desktop.svg');
+    --logo-size: 12.5rem;
+    
+    --padding-inline: 5em;
+    --padding-block: 3em;
+    --padding-primary-btn: 0.75em 3.5em;
+  }
+  
+  body {
+    background-size: auto;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-column-gap: 4em;
+    align-items: start;
+  }
+  
+  .text-content {
+    justify-items: left;
+    text-align: left;
+  }
+  
+  .text-content > h1 {
+    margin: 1em 0 0.625em;
+    line-height: 1.4;
+  }
+  
+  
+} 
